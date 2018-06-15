@@ -1,0 +1,31 @@
+<mvc:View controllerName="sap.mdMasterDetail.controller.Master" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<App>
+	<Page title="{i18n>CatagoryList}">
+		<subHeader>
+			<Toolbar>
+				<SearchField search="_handleSearch" />
+			</Toolbar>
+		</subHeader>
+		<content>
+			<List
+				id="CatagoryList" selectionChange="_handleSubMasterNavigation" mode="SingleSelectMaster"
+				items="{/ProductCategories}">
+					<ObjectListItem
+						title="{Category}"
+						type="Active"
+						press="onListItemPress"
+						number="{NumberOfProducts}"
+						intro="{MainCategory}">
+					</ObjectListItem>
+			</List>
+		</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+							<Button text="Nav to Sub Master" press="_handleSubMasterNavigation"/>
+					</Toolbar>
+				</footer>
+			</Page>
+</App>
+</mvc:View>

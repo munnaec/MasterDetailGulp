@@ -1,0 +1,24 @@
+<mvc:View controllerName="sap.mdMasterDetail.controller.SubMaster" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+		<Page title="Product List">
+				<content>
+					<List
+						id="CatagoryList" selectionChange="__handleProductNavigation" mode="SingleSelectMaster"
+						items="{/Products}">
+							<ObjectListItem
+								title="{ProductId}"
+								type="Active"
+								press="onListItemPress"
+								number="{path:'Price'}"
+								numberUnit="{CurrencyCode}">
+							</ObjectListItem>
+					</List>
+				</content>
+				<footer>
+					<Toolbar>
+					<ToolbarSpacer/>
+					<Button text="Nav to Product Page" press="__handleProductNavigation"/>
+					</Toolbar>
+				</footer>
+			</Page>
+</mvc:View>

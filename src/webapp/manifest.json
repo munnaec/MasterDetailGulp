@@ -1,0 +1,166 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "sap.mdMasterDetail",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ESPM": {
+				"uri": "proxy/ESPM_V1/api/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "sap.mdMasterDetail.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.mdMasterDetail.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request",
+					"useBatch":false
+				},
+				"dataSource": "ESPM",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing":{
+			"config":{
+				"routerClass":"sap.m.routing.Router",
+				"viewType":"XML",
+				"viewPath":"sap.mdMasterDetail.view",
+				"controlId": "splitContainer",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"home",
+						"notFound"
+					]
+				},
+				"async": true
+			},
+			"routes":[
+				{
+					"pattern": "",
+					"name": "home",
+					"target": [
+						"Master",
+						"BlankDetail"
+					
+					]
+				},
+				{
+					"pattern": "categories",
+					"name": "categories",
+					"target": [
+						"Master"
+					]
+				},
+				{
+					"pattern": "category/{id}",
+					"name": "category",
+					"target": [
+						"SubMaster"
+					]
+				},
+				{
+					"pattern": "products/{productId}",
+					"name": "product",
+					"target": [
+						"Products"
+					]
+				}
+			],
+			"targets": {
+				"BlankDetail":{
+					"viewType": "XML",
+					"viewName": "Empty",
+					"controlId": "splitContainer",
+					"controlAggregation": "detailPages"
+				},
+				"Master": {
+					"viewType": "XML",
+					"viewName": "Master",
+					"controlId": "splitContainer",
+					"controlAggregation": "masterPages"
+				},
+				"SubMaster": {
+					"viewType": "XML",
+					"viewName": "SubMaster",
+					"controlAggregation": "masterPages",
+					"controlId": "splitContainer"
+				},
+				"Products": {
+					"viewType": "XML",
+					"viewName": "ProductDetail",
+					"controlId": "splitContainer",
+					"controlAggregation": "detailPages"
+				}
+			}
+
+		}
+
+	}
+}
