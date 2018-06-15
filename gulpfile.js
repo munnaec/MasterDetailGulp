@@ -226,10 +226,3 @@ gulp.task('commit',function(){
  
 //To run application
 gulp.task('default', ['connect', 'watch']);
-gulp;
-
-//Testing from gulp
-//Testingd
-
-
-//Testing update from git
