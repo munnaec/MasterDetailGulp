@@ -231,5 +231,7 @@ gulp.task('default', ['connect', 'watch']);
 //Testing from gulp
 //Testingd
 
+//Demo Testing
+
 
 //Testing update from git
